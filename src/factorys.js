@@ -5,17 +5,21 @@ function shipFactory(length) {
   return {
     length: length,
     hitTimes: 0,
-    isShipSunk: false,
     hit() {
-      hitTimes++;
+      this.hitTimes++;
     },
     isSunk() {
-      if (this.length === hitTimes) {
-        this.isShipSunk = true;
+      if (this.length === this.hitTimes) {
+        return true;
+      } else {
+        return this.isShipSunk;
       }
-      return this.isShipSunk;
     },
   };
+}
+
+function gameBoardFactory() {
+  return {};
 }
 
 export default shipFactory;

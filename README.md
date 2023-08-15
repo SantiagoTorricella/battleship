@@ -1,15 +1,5 @@
-# 🚀 Welcome to your new awesome project!
+# BATTLESHIP
 
-This project has been created using **webpack-cli**, you can now run
+This is the final project from the javascript module from TOP(Yhe Odin Project)
 
-```
-npm run build
-```
-
-or
-
-```
-yarn build
-```
-
-to bundle your application
+Technologies used: JavaScript, Eslint, Webpack, JEST (all dependencies installed wtih npm!!!)
