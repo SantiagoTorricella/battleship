@@ -63,6 +63,22 @@ class GameBoard {
     if (length + y > 10 && isHorizontal === false) return false;
     return true;
   }
+  placeShip(ship, x, y, isHorizontal) {
+    if (this.checkValidPlacement(ship.length, x, y, isHorizontal)) {
+      if (isHorizontal) {
+        for (i = x; i < x + ship.length; i++) {
+          this.gameBoardArray[i][y].ship = ship;
+          this.gameBoardArray[i][y].index = index;
+        }
+      }
+      if (!isHorizontal) {
+        for (i = y; i < y + length; i++) {
+          this.gameBoardArray[x][i].ship = ship;
+          this.gameBoardArray[x][i].index = index;
+        }
+      }
+    }
+  }
 }
 
 export { shipFactory, GameBoard };
