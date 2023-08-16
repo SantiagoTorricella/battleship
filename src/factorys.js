@@ -65,7 +65,4 @@ class GameBoard {
   }
 }
 
-let newBoard = new GameBoard();
-console.log(newBoard.gameBoardArray);
-
 export { shipFactory, GameBoard };
