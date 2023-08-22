@@ -123,4 +123,4 @@ function playerFactory(name) {
   };
 }
 
-export { shipFactory, GameBoard, playerFactory };
+export { shipFactory, GameBoard, playerFactory, rows, cols };

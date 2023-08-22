@@ -4,6 +4,7 @@ import { experiments } from "webpack";
 import { shipFactory } from "../factorys.js";
 import { GameBoard } from "../factorys.js";
 import { playerFactory } from "../factorys.js";
+import aiFactory from "../ai.js";
 
 test("length of ship is 3", () => {
   const ship = shipFactory(3);
@@ -78,5 +79,24 @@ describe("player", () => {
     let player1 = playerFactory("rogelio");
     player1.changeTurn();
     expect(player1.turn).toBe(true);
+  });
+  test("a player can attack enemy board", () => {
+    let player = playerFactory("jorge");
+    let board = new GameBoard();
+    let ship1 = shipFactory(2);
+    player.turn = true;
+    board.placeShip(ship1, 0, 0, true);
+    player.attack(board, 0, 0);
+    expect(ship1.hitTimes).toBe(1);
+  });
+});
+describe("ai", () => {
+  test("ai can attack", () => {
+    let board = new GameBoard();
+    let ai = aiFactory();
+    let ship1 = shipFactory(2);
+    board.placeShip(ship1, 0, 0, true);
+    ai.turn = true;
+    ai.aiAttack(board);
   });
 });
