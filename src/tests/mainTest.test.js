@@ -3,6 +3,7 @@
 import { experiments } from "webpack";
 import { shipFactory } from "../factorys.js";
 import { GameBoard } from "../factorys.js";
+import { playerFactory } from "../factorys.js";
 
 test("length of ship is 3", () => {
   const ship = shipFactory(3);
@@ -70,5 +71,12 @@ describe("board", () => {
     board.reciveAttack(5, 1);
     board.reciveAttack(5, 2);
     expect(board.allShipsSunk()).toBe(true);
+  });
+});
+describe("player", () => {
+  test("player turn switch", () => {
+    let player1 = playerFactory("rogelio");
+    player1.changeTurn();
+    expect(player1.turn).toBe(true);
   });
 });

@@ -3,6 +3,7 @@
 /* eslint-disable no-unused-vars */
 let rows = 10;
 let cols = 10;
+
 // factory function for ships
 function shipFactory(length) {
   return {
@@ -109,7 +110,17 @@ function playerFactory(name) {
     checkTurn() {
       return this.turn;
     },
+    changeTurn() {
+      if (this.turn === true) this.turn = false;
+      else this.turn = true;
+    },
+    attack(board, x, y) {
+      if (this.turn) {
+        board.reciveAttack(x, y);
+        this.changeTurn();
+      }
+    },
   };
 }
 
-export { shipFactory, GameBoard };
+export { shipFactory, GameBoard, playerFactory };

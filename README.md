@@ -1,5 +1,5 @@
 # BATTLESHIP
 
-This is the final project from the javascript module from TOP(Yhe Odin Project)
+This is the final project from the javascript module from TOP(The Odin Project)
 
-Technologies used: JavaScript, Eslint, Webpack, JEST (all dependencies installed wtih npm!!!)
+Technologies used: JavaScript, Eslint, Webpack, JEST (all dependencies installed with npm!!!)
