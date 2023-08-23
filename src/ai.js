@@ -32,4 +32,4 @@ function aiFactory() {
   };
 }
 
-export default aiFactory;
+export { aiFactory };
