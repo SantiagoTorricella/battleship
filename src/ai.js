@@ -16,21 +16,20 @@ function aiFactory() {
       let randomNumbers = this.makeRandomNumber();
       let x = randomNumbers[0];
       let y = randomNumbers[1];
-      if (
-        board.gameBoardArray[x][y].shipName !== undefined &&
-        this.turn === true
-      ) {
-        board.gameBoardArray[x][y].shipName.hit();
-        this.attackedArray.push({ x: x, y: y });
+      let flag = true;
+      while (flag) {
+        if (
+          this.turn === true &&
+          !this.attackedArray.some((e) => e.x === x && e.y === y)
+        ) {
+          this.attackedArray.push({ x: x, y: y });
+          board.gameBoardArray[x][y].shipName.hit();
+          flag = false;
+        }
       }
+      flag = true;
     },
   };
 }
-
-let board = new GameBoard();
-let ai = aiFactory();
-ai.turn = true;
-ai.aiAttack(board);
-console.log(ai.attackedArray);
 
 export default aiFactory;
