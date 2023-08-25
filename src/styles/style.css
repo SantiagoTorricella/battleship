@@ -40,11 +40,14 @@ section {
   align-items: center;
 }
 
-.board {
+.player-board,
+.ai-board {
   height: 70%;
   width: 90%;
   background-color: darkblue;
   justify-self: center;
+  display: flex;
+  flex-wrap: wrap;
 }
 
 footer {
@@ -53,4 +56,13 @@ footer {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+/* ELEMENTS */
+
+.cell {
+  box-sizing: border-box;
+  width: 10%;
+  height: 10%;
+  border: 1px solid black;
 }
