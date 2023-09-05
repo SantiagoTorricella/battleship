@@ -61,6 +61,7 @@ footer {
 /* ELEMENTS */
 
 .cell {
+  cursor: pointer;
   box-sizing: border-box;
   width: 10%;
   height: 10%;

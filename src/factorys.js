@@ -5,9 +5,9 @@ let rows = 10;
 let cols = 10;
 
 // factory function for ships
-function shipFactory(length) {
+function shipFactory(largo) {
   return {
-    length: length,
+    length: largo,
     hitTimes: 0,
     hit() {
       this.hitTimes++;
@@ -44,43 +44,53 @@ class GameBoard {
   getGameBoard() {
     return this.gameBoardArray;
   }
-  checkCollision(length, x, y, isHorizontal) {
-    let i = 0;
-    if (isHorizontal) {
-      for (i = x; i < x + length; i++) {
-        if (this.gameBoardArray[i][y].shipName !== undefined) return true;
-      }
-    }
-    if (!isHorizontal) {
-      for (i = y; i < y + length; i++) {
-        if (this.gameBoardArray[x][i].shipName !== undefined) return true;
-      }
-    }
-    return false;
-  }
-  checkValidPlacement(length, x, y, isHorizontal) {
-    if (this.checkCollision()) return false;
+
+  checkValidPlacement(length, x, y, isVertical) {
     if (x > 10 || x < 0 || y > 10 || y < 0) return false;
-    if (length + x > 10 && isHorizontal === true) return false;
-    if (length + y > 10 && isHorizontal === false) return false;
+    if (length + x > 10 && isVertical === true) return false;
+    if (length + y > 10 && isVertical === false) return false;
+    if (isVertical) {
+      for (let i = x; i < x + length; i++) {
+        if (this.gameBoardArray[i][y].shipName != undefined) return true;
+      }
+    }
+    if (!isVertical) {
+      for (let i = y; i < y + length - 1; i++) {
+        if (this.gameBoardArray[x][i].shipName != undefined) return true;
+      }
+    }
     return true;
   }
-  placeShip(ship, x, y, isHorizontal) {
+  placeShip(ship, x, y, isVertical) {
     let i = 0;
-    if (this.checkValidPlacement(ship.length, x, y, isHorizontal)) {
-      if (isHorizontal) {
-        for (i = x; i < x + ship.length; i++) {
-          this.gameBoardArray[i][y].shipName = ship;
-          this.gameBoardArray[i][y].shipIndex = i;
-        }
+    if (isVertical) {
+      for (i = x; i < x + ship.length; i++) {
+        this.gameBoardArray[i][y].shipName = ship;
+        this.gameBoardArray[i][y].shipIndex = i;
       }
-      if (!isHorizontal) {
-        for (i = y; i < y + ship.length; i++) {
-          this.gameBoardArray[x][i].shipName = ship;
-          this.gameBoardArray[x][i].shipIndex = i;
-        }
+    }
+    if (!isVertical) {
+      for (i = y; i < y + ship.length; i++) {
+        this.gameBoardArray[x][i].shipName = ship;
+        this.gameBoardArray[x][i].shipIndex = i;
       }
-      this.placedShips.push(ship);
+    }
+    this.placedShips.push(ship);
+    return true;
+  }
+  placeRandomShip(ship) {
+    let x;
+    let y;
+    let randomBoolean;
+    let flag = true;
+    while (flag) {
+      x = Math.floor(Math.random() * rows);
+      y = Math.floor(Math.random() * cols);
+      randomBoolean = Math.random() < 0.5;
+      if (this.checkValidPlacement(ship.length, x, y, randomBoolean)) {
+        this.placeShip(ship, x, y, randomBoolean);
+        flag = false;
+      }
     }
   }
   reciveAttack(x, y) {

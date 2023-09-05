@@ -13,11 +13,11 @@ function aiFactory() {
       return [x, y];
     },
     aiAttack(board) {
-      let randomNumbers = this.makeRandomNumber();
-      let x = randomNumbers[0];
-      let y = randomNumbers[1];
       let flag = true;
       while (flag) {
+        let randomNumbers = this.makeRandomNumber();
+        let x = randomNumbers[0];
+        let y = randomNumbers[1];
         if (
           this.turn === true &&
           !this.attackedArray.some((e) => e.x === x && e.y === y)
