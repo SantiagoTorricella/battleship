@@ -51,12 +51,12 @@ class GameBoard {
     if (length + y > 10 && isVertical === false) return false;
     if (isVertical) {
       for (let i = x; i < x + length; i++) {
-        if (this.gameBoardArray[i][y].shipName != undefined) return true;
+        if (this.gameBoardArray[i][y].shipName != undefined) return false;
       }
     }
     if (!isVertical) {
-      for (let i = y; i < y + length - 1; i++) {
-        if (this.gameBoardArray[x][i].shipName != undefined) return true;
+      for (let i = y; i < y + length; i++) {
+        if (this.gameBoardArray[x][i].shipName != undefined) return false;
       }
     }
     return true;
