@@ -63,16 +63,19 @@ class GameBoard {
   }
   placeShip(ship, x, y, isVertical) {
     let i = 0;
+    let h = 0;
     if (isVertical) {
       for (i = x; i < x + ship.length; i++) {
         this.gameBoardArray[i][y].shipName = ship;
-        this.gameBoardArray[i][y].shipIndex = i;
+        this.gameBoardArray[i][y].shipIndex = h;
+        h++;
       }
     }
     if (!isVertical) {
       for (i = y; i < y + ship.length; i++) {
         this.gameBoardArray[x][i].shipName = ship;
-        this.gameBoardArray[x][i].shipIndex = i;
+        this.gameBoardArray[x][i].shipIndex = h;
+        h++;
       }
     }
     this.placedShips.push(ship);
