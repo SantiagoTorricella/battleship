@@ -9,10 +9,14 @@ const intialModal = document.querySelector(".initial-modal");
 const button = document.querySelector("#rotate-button");
 const boardPlacement = document.querySelector(".setup-board");
 const playerBoardDom = document.querySelector(".player-board");
+const aiBoardDom = document.querySelector(".ai-board");
 
 // create gameBoards
 let playerBoard = new GameBoard();
 let aiBoard = new GameBoard();
+
+// create ai
+let ai = aiFactory();
 
 // create all ships in the game
 let playerDestroyer = shipFactory(2);
@@ -84,8 +88,7 @@ function colorShips() {
   for (let i = 0; i < 10; i++) {
     for (let j = 0; j < 10; j++) {
       if (aiBoard.gameBoardArray[i][j].shipName != undefined) {
-        let board = document.querySelector(".ai-board");
-        let cell = board.querySelector(`[data-x="${i}"][data-y="${j}"]`);
+        let cell = aiBoardDom.querySelector(`[data-x="${i}"][data-y="${j}"]`);
         cell.style.backgroundColor = "red";
       }
     }
@@ -136,5 +139,20 @@ function placePlayerShips() {
     });
   });
 }
+
+let aiCell = aiBoardDom.querySelectorAll(".cell");
+
+function playerAttack(cell) {
+  let x = Number(cell.getAttribute("data-x"));
+  let y = Number(cell.getAttribute("data-y"));
+  aiBoard.reciveAttack(x, y);
+  ai.aiAttack(playerBoard);
+}
+
+aiCell.forEach((e) => {
+  e.addEventListener("click", () => {
+    playerAttack(e);
+  });
+});
 
 placePlayerShips();
