@@ -15,6 +15,7 @@ function aiFactory() {
           this.attackedArray.push({ x: x, y: y });
           board.reciveAttack(x, y);
           flag = false;
+          return [x, y];
         }
       }
     },

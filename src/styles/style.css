@@ -75,7 +75,15 @@ footer {
   align-items: center;
 }
 
-.initial-modal {
+.end-modal[open] {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.initial-modal,
+.end-modal {
   background-color: lightcyan;
   border: none;
   width: 50%;
@@ -84,6 +92,17 @@ footer {
   left: 50%;
   transform: translate(-50%, -50%);
   overflow-y: hidden;
+}
+
+.winner-header {
+  text-align: center;
+  height: 30%;
+  font-size: x-large;
+}
+
+.end-modal button {
+  width: 150px;
+  border: none;
 }
 
 button {

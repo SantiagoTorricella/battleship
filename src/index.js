@@ -6,6 +6,9 @@ import "./styles/style.css";
 
 // DOM references
 const intialModal = document.querySelector(".initial-modal");
+const endModal = document.querySelector(".end-modal");
+const winnerHeader = document.querySelector(".winner-header");
+const replayButton = endModal.querySelector("button");
 const button = document.querySelector("#rotate-button");
 const boardPlacement = document.querySelector(".setup-board");
 const playerBoardDom = document.querySelector(".player-board");
@@ -84,7 +87,7 @@ function placeAiShips() {
   aiBoard.placeRandomShip(aiCarrier);
 }
 // color aiships
-function colorShips() {
+/* function colorShips() {
   for (let i = 0; i < 10; i++) {
     for (let j = 0; j < 10; j++) {
       if (aiBoard.gameBoardArray[i][j].shipName != undefined) {
@@ -94,7 +97,7 @@ function colorShips() {
     }
   }
 }
-colorShips();
+colorShips(); */
 
 const cellPlacement = boardPlacement.querySelectorAll(".cell");
 
@@ -148,10 +151,10 @@ function playerAttack(cell) {
   aiBoard.reciveAttack(x, y);
   colorMissedAttacks(x, y, cell);
   colorGoodAttacks(x, y, cell);
-  ai.aiAttack(playerBoard);
-  console.log(playerBoard.missedAttacks);
-  if (isGameFinished()) {
-  }
+  let aiArray = ai.aiAttack(playerBoard);
+  colorAiMissedAttacks(aiArray);
+  colorAiGoodAttacks(aiArray);
+  isGameFinished();
 }
 
 function colorGoodAttacks(x, y, cell) {
@@ -164,16 +167,58 @@ function colorMissedAttacks(x, y, cell) {
     cell.style.backgroundColor = "gray";
 }
 
+function colorAiMissedAttacks(array) {
+  let x = array[0];
+  let y = array[1];
+  if (playerBoard.gameBoardArray[x][y].shipName === undefined) {
+    let cell = playerBoardDom.querySelector(`[data-x="${x}"][data-y="${y}"]`);
+    cell.style.backgroundColor = "gray";
+  }
+}
+
+function colorAiGoodAttacks(array) {
+  let x = array[0];
+  let y = array[1];
+  if (playerBoard.gameBoardArray[x][y].shipName != undefined) {
+    let cell = playerBoardDom.querySelector(`[data-x="${x}"][data-y="${y}"]`);
+    cell.style.backgroundColor = "red";
+  }
+}
+
 aiCell.forEach((e) => {
   e.addEventListener("click", () => {
-    playerAttack(e);
+    if (e.classList.contains("hit")) return;
+    else {
+      playerAttack(e);
+      e.classList.add("hit");
+    }
   });
 });
 
 placePlayerShips();
 
 function isGameFinished() {
-  aiBoard.placedShips.every((ship) => {
-    return ship.sunk === true;
-  });
+  if (
+    aiBoard.placedShips.every((ship) => {
+      return ship.sunk === true;
+    })
+  ) {
+    endModal.showModal();
+    winnerHeader.innerText = "Congratulations captain!!! You Won";
+    return true;
+  }
+
+  if (
+    playerBoard.placedShips.every((ship) => {
+      return ship.sunk === true;
+    })
+  ) {
+    endModal.showModal();
+    winnerHeader.innerText = "Better luck next time captain";
+    return true;
+  } else return false;
 }
+
+replayButton.addEventListener("click", () => {
+  location.reload();
+});
