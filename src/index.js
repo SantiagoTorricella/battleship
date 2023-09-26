@@ -149,7 +149,9 @@ function playerAttack(cell) {
   colorMissedAttacks(x, y, cell);
   colorGoodAttacks(x, y, cell);
   ai.aiAttack(playerBoard);
-  isGameFinished();
+  console.log(playerBoard.missedAttacks);
+  if (isGameFinished()) {
+  }
 }
 
 function colorGoodAttacks(x, y, cell) {
@@ -171,11 +173,7 @@ aiCell.forEach((e) => {
 placePlayerShips();
 
 function isGameFinished() {
-  console.log(aiBoard.placedShips);
-
-  console.log(
-    aiBoard.placedShips.every((ship) => {
-      return ship.sunk === true;
-    })
-  );
+  aiBoard.placedShips.every((ship) => {
+    return ship.sunk === true;
+  });
 }
