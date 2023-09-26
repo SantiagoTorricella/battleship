@@ -5,18 +5,17 @@ let rows = 10;
 let cols = 10;
 
 // factory function for ships
-function shipFactory(largo) {
+function shipFactory(length) {
   return {
-    length: largo,
+    length: length,
     hitTimes: 0,
+    sunk: false,
     hit() {
       this.hitTimes++;
     },
     isSunk() {
       if (this.length === this.hitTimes) {
-        return true;
-      } else {
-        return false;
+        this.sunk = true;
       }
     },
   };
@@ -105,6 +104,7 @@ class GameBoard {
       this.missedAttacks.push({ x: x, y: y });
     else {
       this.gameBoardArray[x][y].shipName.hit();
+      this.gameBoardArray[x][y].shipName.isSunk();
     }
   }
   allShipsSunk() {

@@ -146,7 +146,20 @@ function playerAttack(cell) {
   let x = Number(cell.getAttribute("data-x"));
   let y = Number(cell.getAttribute("data-y"));
   aiBoard.reciveAttack(x, y);
+  colorMissedAttacks(x, y, cell);
+  colorGoodAttacks(x, y, cell);
   ai.aiAttack(playerBoard);
+  isGameFinished();
+}
+
+function colorGoodAttacks(x, y, cell) {
+  if (aiBoard.gameBoardArray[x][y].shipName != undefined)
+    cell.style.backgroundColor = "red";
+}
+
+function colorMissedAttacks(x, y, cell) {
+  if (aiBoard.gameBoardArray[x][y].shipName === undefined)
+    cell.style.backgroundColor = "gray";
 }
 
 aiCell.forEach((e) => {
@@ -156,3 +169,13 @@ aiCell.forEach((e) => {
 });
 
 placePlayerShips();
+
+function isGameFinished() {
+  console.log(aiBoard.placedShips);
+
+  console.log(
+    aiBoard.placedShips.every((ship) => {
+      return ship.sunk === true;
+    })
+  );
+}
