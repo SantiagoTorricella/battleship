@@ -1,9 +1,9 @@
 # BATTLESHIP
 
-This is the final project from the javascript module from TOP(The Odin Project)
+This is the final project from the javascript curriculum from TOP(The Odin Project)
 
-Technologies used: JavaScript, Eslint, Webpack, JEST (all dependencies installed with npm!!!)
-
+Technologies used: Eslint, Webpack, JEST (all dependencies installed with npm!!!)
+Languajes: JavaScript, HTML, CSS
 -------------------------------------------------------
  ## Descripcion
 
