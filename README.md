@@ -11,10 +11,10 @@ Technologies used: JavaScript, Eslint, Webpack, JEST (all dependencies installed
  while polishing my skills with JavaScript. Also it was a pretty good challenge on the logical side because of all the game-logic, game-flow , game-rules and so on.
 
  ## Features
- --Singleplayer battleship game against an IA.
- --Random placement of ships for the IA
- --Manual placement for the player board
+- Singleplayer battleship game against an IA.
+- Random placement of ships for the IA
+- Manual placement for the player board
 
  ### To Do
- --More intelligent IA (shoot adjacent grids when make a hit).
+ - More intelligent IA (shoot adjacent grids when make a hit).
  
