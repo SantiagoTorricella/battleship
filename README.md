@@ -9,7 +9,7 @@ Languajes: JavaScript, HTML, CSS
 [**LIVE DEMO**](https://santiagotorricella.github.io/battleship/)
 
 -------------------------------------------------------
- ## Descripcion
+ ## Description
 
  This battleship project was the final project of my self-taught education in The Odin Project JS Curriculum. The aim was to implement the us of JEST for better understanding in testing,
  while polishing my skills with JavaScript. Also it was a pretty good challenge on the logical side because of all the game-logic, game-flow , game-rules and so on.
