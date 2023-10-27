@@ -6,6 +6,8 @@ Technologies used: Eslint, Webpack, JEST (all dependencies installed with npm!!!
 
 Languajes: JavaScript, HTML, CSS
 
+[**LIVE DEMO**](https://santiagotorricella.github.io/battleship/)
+
 -------------------------------------------------------
  ## Descripcion
 
