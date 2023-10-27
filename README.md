@@ -4,6 +4,7 @@ This is the final project from the javascript curriculum from TOP(The Odin Proje
 
 Technologies used: Eslint, Webpack, JEST (all dependencies installed with npm!!!)
 Languajes: JavaScript, HTML, CSS
+
 -------------------------------------------------------
  ## Descripcion
 
